@@ -1,0 +1,28 @@
+
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4 # Use a specific version
+    container_name: elasticsearch
+    environment:
+      - xpack.security.enabled=false # Disable security for easy local development
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m" # Adjust memory usage as needed
+    ports:
+      - "9200:9200" # HTTP API
+      - "9300:9300" # Node-to-node communication
+    volumes:
+      - esdata:/usr/share/elasticsearch/data # Persist data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    networks:
+      - onebox-network # Define a custom network
+
+volumes:
+  esdata: # Define the named volume
+
+networks:
+  onebox-network: # Define the custom network
+    driver: bridge
