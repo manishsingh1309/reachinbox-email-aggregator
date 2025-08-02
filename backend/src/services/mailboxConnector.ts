@@ -4,23 +4,7 @@ import { simpleParser, AddressObject } from 'mailparser';
 import { inspect } from 'util';
 import { logger } from '../utils/logger';
 import { elasticClient, indexEmail } from './searchIndexer';
-import { IMAPAccountConfig, Em                                }
-
-                                let categorizedEmail = emailData as EmailDocument;
-
-                                // Index the email first without AI categorization
-                                await indexEmail(categorizedEmail);
-                                imapSyncEvents.emit('emailIndexed', categorizedEmail);
-                                logger.debug(`${prefix} Successfully indexed email from ${config.email}: ${categorizedEmail.subject}`);
-
-                                // Add to AI categorization queue for processing with rate limiting
-                                aiCategorizationQueue.push(categorizedEmail);
-                                logger.info(`Added email to AI categorization queue: ${categorizedEmail.subject}. Queue length: ${aiCategorizationQueue.length}`);
-                                
-                                // Start processing the queue if not already processing
-                                processAICategorizationQueue().catch(err => {
-                                    logger.error('Error processing AI categorization queue:', err);
-                                });from '../models';
+import { IMAPAccountConfig, EmailDocument } from '../models';
 import { applyAICategorization } from './aiEngine';
 import { sendInterestedEmailNotification } from './channelAlertService';
 import { triggerWebhook } from './notificationBridge';

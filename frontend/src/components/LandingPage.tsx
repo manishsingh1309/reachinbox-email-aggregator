@@ -1,6 +1,5 @@
 import React from 'react';
-import { Box, Typography, Button, Card, CardContent } from '@mui/material';
-import Grid from '@mui/material/Grid';
+import { Box, Typography, Button, Card, CardContent, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -9,15 +8,13 @@ const LandingPage: React.FC<{ darkMode?: boolean }> = ({ darkMode = false }) => 
   return (
     <Box
       sx={{
-        minHeight: 'calc(100vh - 64px)',
         display: 'flex',
+        minHeight: '100vh',
+        bgcolor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        bgcolor: 'background.default',
-        background: darkMode
-          ? 'linear-gradient(135deg, #232526 0%, #414345 100%)'
-          : 'linear-gradient(135deg, #f8fafc 0%, #e3e6f5 100%)',
-        transition: 'background 0.4s',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
       <Box sx={{ width: '100%', maxWidth: 520, mx: 'auto', textAlign: 'center', p: 4 }}>
@@ -30,8 +27,8 @@ const LandingPage: React.FC<{ darkMode?: boolean }> = ({ darkMode = false }) => 
         <Typography variant="body1" color="text.secondary" mb={4}>
           Real-time sync, beautiful dashboard, and smart categorization.
         </Typography>
-        <Grid columns={12} columnSpacing={3} rowSpacing={3} mb={4} justifyContent="center">
-          <Grid size={6}>
+        <Grid container spacing={3} mb={4} justifyContent="center">
+          <Grid item xs={6}>
             <Box sx={{ width: '100%' }}>
               <Card sx={{ minWidth: 260, boxShadow: 6, borderRadius: 3 }}>
                 <CardContent>
@@ -41,7 +38,7 @@ const LandingPage: React.FC<{ darkMode?: boolean }> = ({ darkMode = false }) => 
               </Card>
             </Box>
           </Grid>
-          <Grid size={6}>
+          <Grid item xs={6}>
             <Box sx={{ width: '100%' }}>
               <Card sx={{ minWidth: 260, boxShadow: 6, borderRadius: 3 }}>
                 <CardContent>
@@ -61,6 +58,17 @@ const LandingPage: React.FC<{ darkMode?: boolean }> = ({ darkMode = false }) => 
         >
           Get Started
         </Button>
+      </Box>
+      <Box
+        sx={{
+          flex: 1,
+          display: { xs: 'none', md: 'block' },
+          minHeight: '100vh',
+          bgcolor: 'transparent',
+          position: 'relative',
+        }}
+      >
+        {/* Add a gradient or illustration here if desired */}
       </Box>
     </Box>
   );
