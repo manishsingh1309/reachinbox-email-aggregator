@@ -27,28 +27,24 @@ const LandingPage: React.FC<{ darkMode?: boolean }> = ({ darkMode = false }) => 
         <Typography variant="body1" color="text.secondary" mb={4}>
           Real-time sync, beautiful dashboard, and smart categorization.
         </Typography>
-        <Grid container spacing={3} mb={4} justifyContent="center">
-          <Grid item xs={6}>
-            <Box sx={{ width: '100%' }}>
-              <Card sx={{ minWidth: 260, boxShadow: 6, borderRadius: 3 }}>
-                <CardContent>
-                  <Typography variant="h6" color="primary">Dashboard Preview</Typography>
-                  <Typography variant="body2">Stats, categories, and more</Typography>
-                </CardContent>
-              </Card>
-            </Box>
-          </Grid>
-          <Grid item xs={6}>
-            <Box sx={{ width: '100%' }}>
-              <Card sx={{ minWidth: 260, boxShadow: 6, borderRadius: 3 }}>
-                <CardContent>
-                  <Typography variant="h6" color="secondary">AI Categorization</Typography>
-                  <Typography variant="body2">Interested, Meeting Booked, Spam</Typography>
-                </CardContent>
-              </Card>
-            </Box>
-          </Grid>
-        </Grid>
+        <Box sx={{ display: 'flex', gap: 3, mb: 4, justifyContent: 'center' }}>
+          <Box sx={{ width: '100%' }}>
+            <Card sx={{ minWidth: 260, boxShadow: 6, borderRadius: 3 }}>
+              <CardContent>
+                <Typography variant="h6" color="primary">Dashboard Preview</Typography>
+                <Typography variant="body2">Stats, categories, and more</Typography>
+              </CardContent>
+            </Card>
+          </Box>
+          <Box sx={{ width: '100%' }}>
+            <Card sx={{ minWidth: 260, boxShadow: 6, borderRadius: 3 }}>
+              <CardContent>
+                <Typography variant="h6" color="secondary">AI Categorization</Typography>
+                <Typography variant="body2">Interested, Meeting Booked, Spam</Typography>
+              </CardContent>
+            </Card>
+          </Box>
+        </Box>
         <Button
           variant="contained"
           color="primary"
