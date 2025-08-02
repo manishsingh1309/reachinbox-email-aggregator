@@ -11,9 +11,12 @@ const ELASTICSEARCH_NODE = process.env.ELASTICSEARCH_NODE || 'http://localhost:9
 
 export const elasticClient = new Client({
     node: ELASTICSEARCH_NODE,
-    // *** CRUCIAL FIX for v7.x client with v8.x server when apiVersion is not accepted ***
+auth: {
+    apiKey: 'N19vc2E1Z0JnQm5teHdQaV9qalY6dzRtQ2ttYzZBV0Nlc2FTSXF2WW5mUQ=='
+  },
+    // * CRUCIAL FIX for v7.x client with v8.x server when apiVersion is not accepted *
     // For @elastic/elasticsearch v7.x connecting to Elasticsearch v8.x,
-    // use the `Connection` options to specify compatibility mode.
+    // use the Connection options to specify compatibility mode.
     Connection: require('@elastic/elasticsearch/lib/Connection'), // Import Connection class
     maxRetries: 3,
     requestTimeout: 60000, // 60 seconds timeout
@@ -34,8 +37,8 @@ export async function connectElasticsearch(): Promise<void> {
         logger.info('Successfully connected to Elasticsearch');
 
         const indexExistsResponse = await elasticClient.indices.exists({ index: INDEX_NAME });
-        // For @elastic/elasticsearch v7.x, the result of .exists() is typically in `body`
-        // and `body` is a boolean.
+        // For @elastic/elasticsearch v7.x, the result of .exists() is typically in body
+        // and body is a boolean.
         if (!indexExistsResponse.body) {
             logger.info(`Elasticsearch index '${INDEX_NAME}' does not exist. Creating it now...`);
 
@@ -79,7 +82,7 @@ export async function indexEmail(email: EmailDocument) { // Use EmailDocument ty
     try {
         const response = await elasticClient.index({
             index: INDEX_NAME,
-            id: `${email.accountId}-${email.uid}`, // Use accountId-uid as the _id
+            id: `${email.accountId}-${email.uid}`,
             body: email,
             op_type: 'index'
         });
