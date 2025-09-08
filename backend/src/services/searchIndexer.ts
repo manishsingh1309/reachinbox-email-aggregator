@@ -12,7 +12,7 @@ const ELASTICSEARCH_NODE = process.env.ELASTICSEARCH_NODE || 'http://localhost:9
 export const elasticClient = new Client({
     node: ELASTICSEARCH_NODE,
 auth: {
-    apiKey: 'N19vc2E1Z0JnQm5teHdQaV9qalY6dzRtQ2ttYzZBV0Nlc2FTSXF2WW5mUQ=='
+    apiKey: 'cWpLZEtwa0JGQmNkQ1VZcUR3aGc6VGVCUVFZRUJIcmhmQy1oY3RHNE8ydw=='
   },
     // * CRUCIAL FIX for v7.x client with v8.x server when apiVersion is not accepted *
     // For @elastic/elasticsearch v7.x connecting to Elasticsearch v8.x,
@@ -158,4 +158,5 @@ export async function searchEmails(query: string, filters: EmailFilters = {}): P
         logger.error('Elasticsearch search failed:', error);
         throw new Error('Elasticsearch search failed.');
     }
+
 }
